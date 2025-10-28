@@ -218,7 +218,7 @@ public:
    * @return A shared pointer to a Card object, representing the dealt card.
    *
    * If there are no cards left in the deck, this function may return a null
-   * pointer or throw an exception, depending on the implementation.
+   * pointer,
    */
   std::shared_ptr<Card> deal_card();
 
