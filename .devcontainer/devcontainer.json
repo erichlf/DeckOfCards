@@ -1,0 +1,53 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+  /////////////////////////////////////////////////////////
+  "dockerComposeFile": [
+    "compose.yml"
+  ],
+  "service": "dev",
+  // Connect to the container as this non-root user
+  // (must already exist in the docker image)
+  "remoteUser": "ubuntu",
+  "updateRemoteUserUID": true,
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    // personal mounts follow
+    "type=bind,source=${localEnv:HOME}/.ssh,target=/home/ros/.ssh,readonly",
+    "type=bind,source=${localEnv:HOME}/.gnupg,target=/home/ros/.gnupg",
+    "type=bind,source=/run/user/${localEnv:UID}/gnupg/S.gpg-agent,target=/run/user/${localEnv:UID}/gnupg/S.gpg-agent,readonly",
+    "type=bind,source=${localEnv:HOME}/.zsh_history,target=/home/ros/.zsh_history",
+    "type=bind,source=/usr/share/fzf/key-bindings.zsh,target=/usr/share/doc/fzf/examples/key-bindings.zsh",
+    "type=bind,source=${localEnv:HOME}/.password-store,target=/home/ros/.password-store,readonly",
+    "type=bind,source=${localEnv:HOME}/.config/TabNine,target=/home/ros/.config/TabNine",
+  ],
+  "features": {
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": "btop,software-properties-common,zsh"
+    }
+  },
+  /////////////////////////////////////////////////////////
+  // Environment variable definitions/overrides for the container
+  "containerEnv": {
+    "DEV_WORKSPACE": "${containerWorkspaceFolder}",
+  },
+  /////////////////////////////////////////////////////////
+  // Tool-specific customisations
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+    }
+  }
+}
