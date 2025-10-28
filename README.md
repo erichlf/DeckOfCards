@@ -15,7 +15,7 @@ If you aren't using devcontainers then you can simple issue the following
 command to obtain a bash prompt inside the container:
 
 ```bash
-PUID=$(id -u); PGID=$(id -g); docker compose -f .devcontainer/compose.yml run -v $(pwd):/workspace dev bash
+PUID=$(id -u); PGID=$(id -g); docker compose -f .devcontainer/compose.yml run -v $(pwd):/workspace deck_of_cards bash
 ```
 
 The `PUID` and `PGID` parameters tells docker compose what your user id and

@@ -4,7 +4,7 @@
   "dockerComposeFile": [
     "compose.yml"
   ],
-  "service": "dev",
+  "service": "deck_of_cards",
   // Connect to the container as this non-root user
   // (must already exist in the docker image)
   "remoteUser": "ubuntu",
@@ -13,13 +13,11 @@
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind",
     // personal mounts follow
-    "type=bind,source=${localEnv:HOME}/.ssh,target=/home/ros/.ssh,readonly",
-    "type=bind,source=${localEnv:HOME}/.gnupg,target=/home/ros/.gnupg",
+    "type=bind,source=${localEnv:HOME}/.ssh,target=/home/ubuntu/.ssh,readonly",
+    "type=bind,source=${localEnv:HOME}/.gnupg,target=/home/ubuntu/.gnupg",
     "type=bind,source=/run/user/${localEnv:UID}/gnupg/S.gpg-agent,target=/run/user/${localEnv:UID}/gnupg/S.gpg-agent,readonly",
-    "type=bind,source=${localEnv:HOME}/.zsh_history,target=/home/ros/.zsh_history",
-    "type=bind,source=/usr/share/fzf/key-bindings.zsh,target=/usr/share/doc/fzf/examples/key-bindings.zsh",
-    "type=bind,source=${localEnv:HOME}/.password-store,target=/home/ros/.password-store,readonly",
-    "type=bind,source=${localEnv:HOME}/.config/TabNine,target=/home/ros/.config/TabNine",
+    "type=bind,source=${localEnv:HOME}/.zsh_history,target=/home/ubuntu/.zsh_history",
+    "type=bind,source=${localEnv:HOME}/.password-store,target=/home/ubuntu/.password-store,readonly",
   ],
   "features": {
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {

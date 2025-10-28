@@ -1,9 +1,9 @@
 services:
-  dev:
+  deck_of_cards:
     build: .
     env_file: variables.env
     user: ${PUID:-1000}:${PGID:-1000}
-    container_name: build
+    container_name: DoC
     tty: true
     cap_add:
       - SYS_PTRACE
